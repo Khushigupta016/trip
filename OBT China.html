@@ -249,6 +249,20 @@
             display: flex !important;
         }
 
+        @media (min-width: 768px) {
+            .app-fluid-button {
+                width: clamp(120px, 20vw, 300px);
+                min-width: 200px;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .app-fluid-button {
+                width: auto;
+                min-width: 0;
+            }
+        }
+
         .sidebar-section-heading {
             font-size: 0.75rem;
             font-weight: 700;
@@ -1667,7 +1681,7 @@
             background: none !important;
         }
 
-        @media (max-width: 640px) {
+        @media (max-width: 767px) {
             .form-row {
                 flex-direction: column;
                 align-items: flex-start;
@@ -2147,6 +2161,12 @@
                 display: none !important;
             }
         }
+
+        @media (min-width: 768px) and (max-width: 1279px) {
+            #sidebar-toggle-btn {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
@@ -2553,7 +2573,7 @@
         <!-- MAIN CONTENT WRAPPER -->
         <div id="main-content-wrapper" class="ml-64 flex flex-col min-h-screen transition-all duration-300 ease-in-out">
             <header
-                class="min-h-16 bg-white border-b border-slate-200 flex flex-col gap-2 py-2 md:flex-row md:items-center md:justify-between md:gap-3 md:py-0 md:h-16 px-4 md:px-6 lg:px-8 sticky top-0 z-30 shadow-sm">
+                class="min-h-16 bg-white border-b border-slate-200 flex flex-col gap-2 py-2 md:flex-row md:items-center md:justify-between md:gap-3 md:py-0 md:h-16 px-4 md:px-10 xl:px-8 sticky top-0 z-30 shadow-sm">
                 <div class="flex items-center gap-2 min-w-0 w-full md:flex-1">
                     <button type="button" id="mobile-nav-toggle" onclick="window.toggleSidebar()"
                         class="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] -ml-1 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors shrink-0"
@@ -2654,7 +2674,7 @@
             <!-- PAGES -->
             <div id="pages-container" class="flex-1 flex flex-col items-stretch justify-start min-h-0 w-full overflow-y-auto">
                 <!-- DASHBOARD -->
-                <main id="page-dashboard" class="p-4 pb-24 md:p-8 max-w-7xl mx-auto w-full animate-fade-in">
+                <main id="page-dashboard" class="p-4 pb-24 md:p-10 md:pb-10 xl:p-8 max-w-7xl mx-auto w-full animate-fade-in">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-6 md:mb-8">
                         <div>
                             <h2 class="text-xl md:text-3xl font-extrabold text-slate-900 tracking-tight">Welcome Home, John</h2>
@@ -2662,7 +2682,7 @@
                             </p>
                         </div>
                         <button onclick="window.toggleTravelModal()"
-                            class="fixed inset-x-4 bottom-4 z-40 md:static md:inset-auto bg-[#E53935] text-white px-6 py-3 min-h-[44px] rounded-xl font-bold shadow-lg shadow-orange-200 hover:bg-[#C62828] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 md:w-auto">
+                            class="app-fluid-button fixed inset-x-4 bottom-4 z-40 md:static md:inset-auto bg-[#E53935] text-white px-6 py-3 min-h-[44px] rounded-xl font-bold shadow-lg shadow-orange-200 hover:bg-[#C62828] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2">
                             <i data-lucide="plus" class="w-5 h-5"></i> New Travel Request
                         </button>
                     </div>
@@ -2683,11 +2703,11 @@
                     </div>
 
                     <!-- Next Trip Hero -->
-                    <div class="glass-gradient rounded-2xl p-4 md:p-6 text-white mb-6 md:mb-8 shadow-xl relative overflow-hidden">
+                    <div class="glass-gradient rounded-2xl p-4 md:p-10 xl:p-6 text-white mb-6 md:mb-8 shadow-xl relative overflow-hidden">
                         <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
                         <div class="absolute right-20 bottom-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl"></div>
-                        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 relative z-10">
-                            <div>
+                        <div class="flex min-h-[172px] md:min-h-0 flex-col md:flex-row md:justify-between md:items-center gap-4 relative z-10">
+                            <div class="min-w-0 md:flex-1">
                                 <div class="flex flex-wrap items-center gap-2 mb-4">
                                     <span
                                         class="bg-[#4285F4] text-white text-[10px] font-black px-2 py-0.5 rounded tracking-widest">Next
@@ -2699,7 +2719,7 @@
                                         class="inline w-6 h-6 mx-2 text-orange-400"></i> Hiroshima (HIJ)</h3>
                             </div>
                             <button
-                                class="w-full md:w-auto min-h-[44px] bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-2.5 rounded-lg text-sm font-bold backdrop-blur-md transition-all">
+                                class="app-fluid-button mt-auto w-full md:mt-0 min-h-[44px] bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-2.5 rounded-lg text-sm font-bold backdrop-blur-md transition-all">
                                 View Itinerary
                             </button>
                         </div>
@@ -2879,7 +2899,7 @@
                 </main>
 
                 <!-- AI-ADDED: Travel Application — Approvals (filters + Pending/Approved); Prompt: home-area approvals list -->
-                <main id="page-approvals" class="hidden animate-fade-in p-4 md:p-8 w-full max-w-[1600px] mx-auto">
+                <main id="page-approvals" class="hidden animate-fade-in p-4 md:p-10 xl:p-8 w-full max-w-[1600px] mx-auto">
                     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                         <div>
                             <h2 class="text-2xl font-black text-slate-900 tracking-tight">Approvals</h2>
@@ -3025,7 +3045,7 @@
                 <main id="page-profile" class="hidden animate-fade-in flex flex-col flex-1 min-h-0 overflow-hidden">
                     <!-- PROFILE HEADER -->
                     <div
-                        class="sticky top-0 z-40 bg-white border-b border-slate-200 px-6 sm:px-8 py-4 flex flex-wrap gap-4 justify-between items-center shadow-sm shrink-0">
+                        class="sticky top-0 z-40 bg-white border-b border-slate-200 px-4 md:px-10 xl:px-8 py-4 flex flex-wrap gap-4 justify-between items-center shadow-sm shrink-0">
                         <div class="flex items-center gap-4 min-w-0">
                             <button type="button" onclick="window.showPage('dashboard')"
                                 class="profile-inline-action shrink-0 p-2 rounded-lg text-slate-500 hover:bg-slate-100 hover:text-slate-800 transition-colors"
@@ -3041,7 +3061,7 @@
                              Prompt: Replace Edit Profile with Save Changes; fields editable by default -->
                         <div class="flex flex-wrap gap-2 sm:gap-3">
                             <button type="button" id="profile-save-btn" onclick="window.saveProfileChanges()"
-                                class="hidden profile-inline-action w-full sm:w-auto bg-[#f26522] text-white px-5 sm:px-8 py-2.5 rounded-xl font-bold text-xs tracking-widest hover:bg-[#d9541a] transition-all flex items-center justify-center gap-2 shadow-md border border-white/10">
+                                class="hidden profile-inline-action w-full md:w-auto bg-[#f26522] text-white px-5 md:px-10 xl:px-8 py-2.5 rounded-xl font-bold text-xs tracking-widest hover:bg-[#d9541a] transition-all flex items-center justify-center gap-2 shadow-md border border-white/10">
                                 <i data-lucide="save" class="w-4 h-4"></i> Save Changes
                             </button>
                         </div>
@@ -3099,7 +3119,7 @@
                         </aside>
 
                         <!-- RIGHT: SCROLLABLE CONTENT -->
-                        <div id="profile-content-scroll" class="flex-1 min-w-0 bg-white overflow-y-auto p-8 sm:p-12 sidebar-scroll">
+                        <div id="profile-content-scroll" class="flex-1 min-w-0 bg-white overflow-y-auto p-4 md:p-10 xl:p-8 sidebar-scroll">
 
                             <!-- AI-ADDED: Refactored 7-tab profile content matching reference images
                                  Prompt: Refactor #page-profile to 7-tab layout matching reference images -->
@@ -3741,7 +3761,7 @@
                 </main>
 
                 <!-- BOOKING WORKFLOW -->
-                <main id="page-booking" class="booking-workflow-page p-4 md:p-8 hidden bg-slate-50 min-h-screen w-full max-w-full">
+                <main id="page-booking" class="booking-workflow-page p-4 md:p-10 xl:p-8 hidden bg-slate-50 min-h-screen w-full max-w-full">
                     <div class="w-full max-w-full">
                         <div class="mb-8 flex justify-between items-center">
                             <h2 id="booking-title" class="app-heading-page">Travel:
@@ -4770,7 +4790,7 @@
 
                                 <!-- Other Request Section -->
                                 <div id="content-other"
-                                    class="hidden text-left bg-white p-8 rounded-3xl border border-slate-200 animate-fade-in w-full max-w-full shadow-sm">
+                                    class="hidden text-left bg-white p-4 md:p-10 xl:p-8 rounded-3xl border border-slate-200 animate-fade-in w-full max-w-full shadow-sm">
                                     <div class="flex items-center gap-3 mb-6">
                                         <div
                                             class="w-10 h-10 bg-orange-50 text-[#E53935] rounded-xl flex items-center justify-center">
@@ -5129,7 +5149,7 @@
             </main>
 
             <!-- CHANGE REQUEST WORKFLOW (separate from New Request; same form structure, heading "Change Request") -->
-            <main id="page-change-request" class="booking-workflow-page p-4 md:p-8 hidden bg-slate-50 min-h-screen w-full max-w-full">
+            <main id="page-change-request" class="booking-workflow-page p-4 md:p-10 xl:p-8 hidden bg-slate-50 min-h-screen w-full max-w-full">
                 <div class="w-full max-w-full">
                     <div class="mb-8 flex justify-between items-center">
                         <h2 id="change-request-title" class="app-heading-page">Travel:
@@ -5174,13 +5194,13 @@
                  Prompt: Reports full width like domestic/international flow -->
                  <main id="page-reports" class="booking-workflow-page hidden animate-fade-in w-full max-w-full flex flex-col bg-slate-50 min-h-screen">
     
-                    <div class="p-4 pb-0 md:p-8 md:pb-0 w-full max-w-full">
+                    <div class="p-4 pb-0 md:p-10 md:pb-0 xl:p-8 xl:pb-0 w-full max-w-full">
                         <div class="flex justify-between items-center mb-8">
                             <h2 class="app-heading-page">Travel: <span class="text-[#4285F4]">Reports</span></h2>
                         </div>
                     </div>
                 
-                    <div class="p-4 pt-0 md:p-8 md:pt-0 w-full max-w-full flex-1">
+                    <div class="p-4 pt-0 md:p-10 md:pt-0 xl:p-8 xl:pt-0 w-full max-w-full flex-1">
                         <div class="domestic-form-container">
                             <form id="travel-reports-form">
                                 
@@ -5256,11 +5276,11 @@
             <!-- AI-ADDED: Sticky page header + scrollable body (match New Request layout)
                  Prompt: Standardize Bulletin layout -->
             <main id="page-bulletin" class="hidden animate-fade-in w-full max-w-6xl mx-auto flex flex-col flex-1 min-h-0 self-stretch">
-                <div class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 px-8 py-6 shrink-0">
+                <div class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 px-4 md:px-10 xl:px-8 py-6 shrink-0">
                     <h2 class="app-heading-page text-[#4285F4]">Tripsource Bulletin 04-3</h2>
                     <p class="text-sm text-slate-500 mt-1 font-medium">Post and review internal announcements for your organization.</p>
                 </div>
-                <div class="flex-1 min-h-0 overflow-y-auto px-8 py-6 flex flex-col gap-6">
+                <div class="flex-1 min-h-0 overflow-y-auto px-4 md:px-10 xl:px-8 py-6 flex flex-col gap-6">
 
                 <!-- Search / Filter -->
                 <div class="bg-slate-50/50 p-6 rounded-3xl border border-slate-100 shrink-0">
@@ -5351,7 +5371,7 @@
             </main>
 
             <!-- RESERVATION LIST -->
-            <main id="page-reservation-list" class="p-4 md:p-8 hidden animate-fade-in w-full max-w-[1600px] mx-auto">
+            <main id="page-reservation-list" class="p-4 md:p-10 xl:p-8 hidden animate-fade-in w-full max-w-[1600px] mx-auto">
                 <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                     <div>
                         <h2 class="text-2xl font-black text-slate-900 tracking-tight">Reservation List</h2>
@@ -5555,7 +5575,7 @@
             <!-- AI-ADDED: Sticky title + Add User / Bulk Delete bar; scrollable search + table
                  Prompt: Standardize User Management layout -->
             <!-- <main id="page-user-management" class="hidden animate-fade-in w-full max-w-full mx-0 flex flex-col flex-1 min-h-0 self-stretch">
-                <div class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 px-8 py-6 shrink-0">
+                <div class="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-slate-200 px-4 md:px-10 xl:px-8 py-6 shrink-0">
                     <div class="flex flex-wrap gap-4 justify-between items-start">
                         <div class="min-w-0">
                             <h2 class="app-heading-page text-[#4285F4]">User Management</h2>
@@ -5574,7 +5594,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex-1 min-h-0 overflow-y-auto px-8 py-6 flex flex-col gap-6">
+                <div class="flex-1 min-h-0 overflow-y-auto px-4 md:px-10 xl:px-8 py-6 flex flex-col gap-6">
 
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 sm:p-6 shrink-0">
                     <h3 class="text-xs font-black text-slate-700 tracking-wider mb-4 uppercase">Search</h3>
@@ -5715,7 +5735,7 @@
                  Prompt: User Management full width like domestic/international flow -->
             <main id="page-user-management" class="booking-workflow-page hidden animate-fade-in w-full max-w-full flex flex-col bg-slate-50 min-h-screen">
     
-                <div class="p-4 pb-0 md:p-8 md:pb-0 w-full max-w-full">
+                <div class="p-4 pb-0 md:p-10 md:pb-0 xl:p-8 xl:pb-0 w-full max-w-full">
                     <div class="flex justify-between items-center mb-8">
                         <h2 class="app-heading-page">Admin: <span class="text-[#4285F4]">User Management</span></h2>
                         
@@ -5726,7 +5746,7 @@
                     </div>
                 </div>
             
-                <div class="p-4 pt-0 md:p-8 md:pt-0 w-full max-w-full flex-1">
+                <div class="p-4 pt-0 md:p-10 md:pt-0 xl:p-8 xl:pt-0 w-full max-w-full flex-1">
                     <div class="domestic-form-container">
                         
                         <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
@@ -5822,7 +5842,7 @@
             <!-- AI-ADDED: booking-workflow-page + p-8/pb-0 + pt-0 split — same top inset as booking / reports / library -->
             <!-- Prompt: My Points top padding fixed like booking screens -->
             <main id="page-my-points" class="booking-workflow-page hidden animate-fade-in w-full max-w-full flex flex-col bg-slate-50 min-h-screen">
-                <div class="p-4 pb-0 md:p-8 md:pb-0 w-full max-w-full">
+                <div class="p-4 pb-0 md:p-10 md:pb-0 xl:p-8 xl:pb-0 w-full max-w-full">
                     <div class="mb-8">
                         <h2 class="app-heading-page flex items-center gap-2">
                             <i data-lucide="award" class="w-6 h-6 text-amber-500"></i> My Points
@@ -5831,11 +5851,11 @@
                     </div>
                 </div>
 
-                <div class="p-4 pt-0 md:p-8 md:pt-0 w-full max-w-full flex-1">
+                <div class="p-4 pt-0 md:p-10 md:pt-0 xl:p-8 xl:pt-0 w-full max-w-full flex-1">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
                     <!-- Total Points Card -->
                     <div class="md:col-span-2 bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
-                        <div class="p-4 md:p-8">
+                        <div class="p-4 md:p-10 xl:p-8">
                             <div class="flex items-start justify-between gap-4">
                                 <div>
                                     <p class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Available Balance</p>
@@ -5847,7 +5867,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="px-4 md:px-8 pb-4 md:pb-8">
+                        <div class="px-4 md:px-10 xl:px-8 pb-4 md:pb-10 xl:pb-8">
                             <div class="rounded-xl bg-amber-50 border border-amber-100 p-4 flex items-start gap-3">
                                 <i data-lucide="clock" class="w-4 h-4 text-amber-500 shrink-0 mt-0.5"></i>
                                 <div>
@@ -5913,13 +5933,13 @@
                  Prompt: My Trip Library full width like domestic/international flow -->
                  <main id="page-library" class="booking-workflow-page hidden animate-fade-in w-full max-w-full flex flex-col bg-slate-50 min-h-screen">
     
-                    <div class="p-4 pb-0 md:p-8 md:pb-0 w-full max-w-full">
+                    <div class="p-4 pb-0 md:p-10 md:pb-0 xl:p-8 xl:pb-0 w-full max-w-full">
                         <div class="flex justify-between items-center mb-8">
                             <h2 class="app-heading-page">Manage: <span class="text-[#4285F4]">My Trip Library</span></h2>
                         </div>
                     </div>
                 
-                    <div class="p-4 pt-0 md:p-8 md:pt-0 w-full max-w-full flex-1">
+                    <div class="p-4 pt-0 md:p-10 md:pt-0 xl:p-8 xl:pt-0 w-full max-w-full flex-1">
                         <div class="domestic-form-container">
                             
                             <!-- AI-ADDED: Collapsible FILTER TRIPS; Prompt: collapsible filter in My Trip Library -->
@@ -7163,17 +7183,17 @@
     <div id="travel-modal"
         class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
         <div class="bg-white rounded-3xl w-[min(100%,94vw)] sm:w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl modal-enter flex flex-col mx-auto">
-            <div class="p-4 md:p-8 border-b flex justify-between items-center shrink-0">
+            <div class="p-4 md:p-10 xl:p-8 border-b flex justify-between items-center shrink-0">
                 <h3 class="text-xl font-black">New Request</h3><button onclick="window.toggleTravelModal()"><i
                         data-lucide="x" class="w-6 h-6 text-slate-400"></i></button>
             </div>
-            <div class="p-4 md:p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 flex-1 min-h-0 overflow-y-auto">
+            <div class="p-4 md:p-10 xl:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 min-h-0 overflow-y-auto">
                 <button onclick="window.startBooking('domestic'); window.toggleTravelModal();"
-                    class="p-4 md:p-8 border-2 rounded-2xl hover:border-[#E53935] transition-all"><i data-lucide="map"
+                    class="p-4 md:p-10 xl:p-8 border-2 rounded-2xl hover:border-[#E53935] transition-all"><i data-lucide="map"
                         class="w-8 h-8 mb-4 mx-auto text-slate-400"></i><span
                         class="font-black">Domestic</span></button>
                 <button onclick="window.startBooking('international'); window.toggleTravelModal();"
-                    class="p-4 md:p-8 border-2 rounded-2xl hover:border-[#E53935] transition-all"><i data-lucide="globe"
+                    class="p-4 md:p-10 xl:p-8 border-2 rounded-2xl hover:border-[#E53935] transition-all"><i data-lucide="globe"
                         class="w-8 h-8 mb-4 mx-auto text-slate-400"></i><span
                         class="font-black">International</span></button>
             </div>
@@ -7303,7 +7323,7 @@
     <div id="confirm-modal"
         class="hidden fixed inset-0 z-[200] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
         <div
-            class="bg-white rounded-[2rem] shadow-2xl w-[min(100%,94vw)] sm:w-full max-w-sm max-h-[90vh] overflow-y-auto mx-auto p-4 md:p-8 text-center relative modal-enter">
+            class="bg-white rounded-[2rem] shadow-2xl w-[min(100%,94vw)] sm:w-full max-w-sm max-h-[90vh] overflow-y-auto mx-auto p-4 md:p-10 xl:p-8 text-center relative modal-enter">
             <div class="w-16 h-16 bg-red-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <i data-lucide="alert-triangle" class="w-8 h-8 text-red-500"></i>
             </div>
@@ -7652,7 +7672,7 @@
          Prompt: 8-day advance validation for online flight/rail search -->
     <div id="advance-booking-attention-modal" class="hidden fixed inset-0 z-[210] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="advance-booking-attention-title" onclick="if(event.target===this)window.dismissAdvanceBookingAttentionModal()">
         <div class="bg-white rounded-3xl shadow-2xl w-[min(100%,94vw)] sm:w-full max-w-lg mx-auto max-h-[90vh] overflow-y-auto overflow-x-hidden animate-fade-in border border-slate-200" onclick="event.stopPropagation()">
-            <div class="p-4 md:p-8">
+            <div class="p-4 md:p-10 xl:p-8">
                 <div class="flex items-start gap-4">
                     <div class="w-12 h-12 rounded-2xl bg-amber-100 border border-amber-200 flex items-center justify-center shrink-0">
                         <i data-lucide="alert-circle" class="w-7 h-7 text-amber-600" aria-hidden="true"></i>
@@ -7672,7 +7692,7 @@
 
     <div id="online-policy-modal" class="hidden fixed inset-0 z-[220] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="online-policy-modal-title" onclick="if(event.target===this)window.onPolicyModalDismiss()">
         <div class="bg-white rounded-3xl shadow-2xl w-[min(100%,94vw)] sm:w-full max-w-lg mx-auto max-h-[90vh] overflow-y-auto overflow-x-hidden animate-fade-in border border-slate-200" onclick="event.stopPropagation()">
-            <div class="p-4 md:p-8">
+            <div class="p-4 md:p-10 xl:p-8">
                 <div class="flex items-start gap-4">
                     <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
                         <i data-lucide="shield-alert" class="w-7 h-7 text-[#4285F4]" aria-hidden="true"></i>
@@ -7694,7 +7714,7 @@
          Prompt: fee-notice-modal, PRICE_FEE_THRESHOLD, selection gate -->
     <div id="fee-notice-modal" class="hidden fixed inset-0 z-[218] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="fee-notice-modal-title" onclick="if(event.target===this)window.dismissFeeNoticeModal()">
         <div class="bg-white rounded-3xl shadow-2xl w-[min(100%,94vw)] sm:w-full max-w-lg mx-auto max-h-[90vh] overflow-y-auto overflow-x-hidden animate-fade-in border border-slate-200" onclick="event.stopPropagation()">
-            <div class="p-4 md:p-8">
+            <div class="p-4 md:p-10 xl:p-8">
                 <div class="flex items-start gap-4">
                     <div class="w-12 h-12 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center shrink-0">
                         <i data-lucide="info" class="w-7 h-7 text-blue-500" aria-hidden="true"></i>
@@ -7715,7 +7735,7 @@
          Prompt: fare modal, rounded-3xl, design system -->
     <div id="online-fare-detail-modal" class="hidden fixed inset-0 z-[225] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="online-fare-modal-title" onclick="if(event.target===this)window.closeOnlineFareModal()">
         <div class="bg-white rounded-3xl shadow-2xl w-[min(100%,94vw)] sm:w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col animate-fade-in border border-slate-200 mx-auto" onclick="event.stopPropagation()">
-            <div class="p-4 md:p-8 overflow-y-auto flex-1 min-h-0">
+            <div class="p-4 md:p-10 xl:p-8 overflow-y-auto flex-1 min-h-0">
                 <h3 id="online-fare-modal-title" class="text-lg font-black text-slate-900 tracking-tight" style="font-family: var(--font-heading);">Itinerary &amp; fares</h3>
                 <p id="online-fare-modal-itinerary" class="text-sm font-medium text-slate-600 leading-relaxed mt-3"></p>
                 <div class="mt-6 border-t border-slate-100 pt-4">
@@ -7733,7 +7753,7 @@
          Prompt: success modal z-3000, check-circle, actions -->
     <div id="booking-success-modal" class="hidden fixed inset-0 z-[3000] flex items-center justify-center bg-slate-900/70 backdrop-blur-sm p-4" role="dialog" aria-modal="true" aria-labelledby="booking-success-modal-title" onclick="if(event.target===this)window.closeBookingSuccessModal()">
         <div class="bg-white rounded-3xl shadow-2xl w-[min(100%,94vw)] sm:w-full max-w-lg mx-auto overflow-hidden border border-slate-200 animate-fade-in max-h-[90vh] flex flex-col" onclick="event.stopPropagation()">
-            <div class="p-4 md:p-10 text-center space-y-6 flex-1 min-h-0 overflow-y-auto">
+            <div class="p-4 md:p-10 xl:p-8 text-center space-y-6 flex-1 min-h-0 overflow-y-auto">
                 <div class="flex justify-center">
                     <i data-lucide="check-circle" class="w-16 h-16 sm:w-20 sm:h-20 text-green-500 stroke-[1.25]" aria-hidden="true"></i>
                 </div>
@@ -8845,6 +8865,8 @@
         // --- GLOBAL APP LOGIC ---
         window.currentTravelFlow = 'domestic';
         window._sidebarCollapsedPref = false;
+        window._isMobileShell = () => window.matchMedia('(max-width: 767px)').matches;
+        window._isUltraShell = () => window.matchMedia('(min-width: 768px) and (max-width: 1279px)').matches;
 
         window.setMobileNavOpen = (open) => {
             const on = !!open;
@@ -8888,7 +8910,7 @@
                 }
                 if (icon) icon.setAttribute('data-lucide', 'chevron-left');
             }
-            lucide.createIcons();
+            if (window.lucide) lucide.createIcons();
         };
 
         window.setSidebarCollapsed = (collapsed) => {
@@ -8896,10 +8918,17 @@
             const sb = document.getElementById('app-sidebar');
             const main = document.getElementById('main-content-wrapper');
             if (!sb || !main) return;
-            if (window.matchMedia('(max-width: 767px)').matches) {
+            if (window._isMobileShell()) {
                 window.setMobileNavOpen(false);
                 sb.classList.remove('sidebar-collapsed', 'w-16');
+                main.classList.remove('ml-16');
                 sb.classList.add('w-64');
+                main.classList.add('ml-64');
+                return;
+            }
+            if (window._isUltraShell()) {
+                window.setMobileNavOpen(false);
+                window._applyDesktopSidebarCollapsed(true);
                 return;
             }
             window._applyDesktopSidebarCollapsed(collapsed);
@@ -8908,8 +8937,13 @@
         window.toggleSidebar = () => {
             const sb = document.getElementById('app-sidebar');
             if (!sb) return;
-            if (window.matchMedia('(max-width: 767px)').matches) {
+            if (window._isMobileShell()) {
                 window.setMobileNavOpen(!document.body.classList.contains('mobile-nav-open'));
+                return;
+            }
+            if (window._isUltraShell()) {
+                window.setMobileNavOpen(false);
+                window._applyDesktopSidebarCollapsed(true);
                 return;
             }
             window.setSidebarCollapsed(!sb.classList.contains('sidebar-collapsed'));
@@ -8919,22 +8953,32 @@
             const backdrop = document.getElementById('sidebar-backdrop');
             if (backdrop) backdrop.addEventListener('click', () => window.setMobileNavOpen(false));
             let _obtResizeT;
+            const syncSidebarForViewport = () => {
+                const sb = document.getElementById('app-sidebar');
+                const main = document.getElementById('main-content-wrapper');
+                if (!sb || !main) return;
+                if (window._isMobileShell()) {
+                    window.setMobileNavOpen(false);
+                    sb.classList.remove('sidebar-collapsed', 'w-16');
+                    main.classList.remove('ml-16');
+                    sb.classList.add('w-64');
+                    main.classList.add('ml-64');
+                    return;
+                }
+                window.setMobileNavOpen(false);
+                if (window._isUltraShell()) {
+                    window._applyDesktopSidebarCollapsed(true);
+                    return;
+                }
+                window._applyDesktopSidebarCollapsed(!!window._sidebarCollapsedPref);
+            };
             window.addEventListener('resize', () => {
                 clearTimeout(_obtResizeT);
                 _obtResizeT = setTimeout(() => {
-                    const mobile = window.matchMedia('(max-width: 767px)').matches;
-                    if (!mobile) {
-                        window.setMobileNavOpen(false);
-                        window._applyDesktopSidebarCollapsed(!!window._sidebarCollapsedPref);
-                    } else {
-                        const sb = document.getElementById('app-sidebar');
-                        if (sb) {
-                            sb.classList.remove('sidebar-collapsed', 'w-16');
-                            sb.classList.add('w-64');
-                        }
-                    }
+                    syncSidebarForViewport();
                 }, 120);
             });
+            requestAnimationFrame(syncSidebarForViewport);
         })();
 
         window.handleLogin = () => { document.getElementById('login-screen').classList.add('hidden'); document.getElementById('main-app').classList.remove('hidden'); window.showPage('dashboard'); };
