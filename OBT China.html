@@ -1703,6 +1703,11 @@
                 min-height: 44px;
             }
 
+            #main-content-wrapper button,
+            #login-screen button {
+                min-height: 44px;
+            }
+
             /* Paired controls in a row (e.g. expiry month/year): share width, still 44px tall */
             #main-content-wrapper .flex.items-center.gap-2 > select.flex-1,
             #main-content-wrapper .flex.items-center.gap-2 > input.flex-1 {
@@ -2082,7 +2087,7 @@
             }
         }
 
-        @media (max-width: 1023px) {
+        @media (max-width: 767px) {
             #app-sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s ease-in-out, box-shadow 0.3s ease;
@@ -2115,7 +2120,7 @@
             }
         }
 
-        @media (min-width: 1024px) {
+        @media (min-width: 768px) {
             #sidebar-backdrop {
                 display: none !important;
                 pointer-events: none !important;
@@ -2526,15 +2531,15 @@
             </div>
         </div>
 
-        <div id="sidebar-backdrop" class="hidden fixed inset-0 z-[25] bg-slate-900/40 lg:pointer-events-none" aria-hidden="true" role="presentation"></div>
+        <div id="sidebar-backdrop" class="hidden fixed inset-0 z-[25] bg-slate-900/40 md:pointer-events-none" aria-hidden="true" role="presentation"></div>
 
         <!-- MAIN CONTENT WRAPPER -->
         <div id="main-content-wrapper" class="ml-64 flex flex-col min-h-screen transition-all duration-300 ease-in-out">
             <header
-                class="min-h-16 bg-white border-b border-slate-200 flex flex-col gap-2 py-2 lg:flex-row lg:items-center lg:justify-between lg:gap-3 lg:py-0 lg:h-16 px-3 sm:px-6 lg:px-8 sticky top-0 z-30 shadow-sm">
-                <div class="flex items-center gap-2 min-w-0 w-full lg:flex-1">
+                class="min-h-16 bg-white border-b border-slate-200 flex flex-col gap-2 py-2 md:flex-row md:items-center md:justify-between md:gap-3 md:py-0 md:h-16 px-4 md:px-6 lg:px-8 sticky top-0 z-30 shadow-sm">
+                <div class="flex items-center gap-2 min-w-0 w-full md:flex-1">
                     <button type="button" id="mobile-nav-toggle" onclick="window.toggleSidebar()"
-                        class="lg:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] -ml-1 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors shrink-0"
+                        class="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] -ml-1 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors shrink-0"
                         aria-controls="app-sidebar" aria-expanded="false" aria-label="Open menu" title="Menu">
                         <i data-lucide="menu" class="w-6 h-6 shrink-0" aria-hidden="true"></i>
                     </button>
@@ -2550,7 +2555,7 @@
                 </div>
                 </div>
 
-                <div class="flex items-center gap-2 sm:gap-4 shrink-0 w-full lg:w-auto justify-between lg:justify-end flex-wrap lg:flex-nowrap">
+                <div class="flex items-center gap-2 md:gap-4 shrink-0 w-full md:w-auto justify-between md:justify-end flex-wrap md:flex-nowrap">
                     <button type="button" onclick="window.openContactServiceModal()"
                         class="flex items-center gap-2 text-[#0A3266] hover:text-[#4285F4] text-xs sm:text-sm font-bold transition-colors shrink-0 whitespace-nowrap leading-tight text-left">
                         <i data-lucide="headset" class="w-4 h-4 shrink-0"></i>
@@ -2632,21 +2637,21 @@
             <!-- PAGES -->
             <div id="pages-container" class="flex-1 flex flex-col items-stretch justify-start min-h-0 w-full overflow-y-auto">
                 <!-- DASHBOARD -->
-                <main id="page-dashboard" class="p-8 max-w-7xl mx-auto w-full animate-fade-in">
-                    <div class="flex justify-between items-end mb-8">
+                <main id="page-dashboard" class="p-4 pb-24 md:p-8 max-w-7xl mx-auto w-full animate-fade-in">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-end gap-4 mb-6 md:mb-8">
                         <div>
-                            <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Welcome Home, John</h2>
+                            <h2 class="text-xl md:text-3xl font-extrabold text-slate-900 tracking-tight">Welcome Home, John</h2>
                             <p class="text-slate-500 mt-1 font-medium">Manage your corporate travel plans and approvals.
                             </p>
                         </div>
                         <button onclick="window.toggleTravelModal()"
-                            class="bg-[#E53935] text-white px-6 py-3 rounded-xl font-bold shadow-lg shadow-orange-200 hover:bg-[#C62828] hover:-translate-y-0.5 transition-all flex items-center gap-2">
+                            class="fixed inset-x-4 bottom-4 z-40 md:static md:inset-auto bg-[#E53935] text-white px-6 py-3 min-h-[44px] rounded-xl font-bold shadow-lg shadow-orange-200 hover:bg-[#C62828] hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 md:w-auto">
                             <i data-lucide="plus" class="w-5 h-5"></i> New Travel Request
                         </button>
                     </div>
 
                     <!-- APPROVAL STATUS ALERTS -->
-                    <div class="space-y-3 mb-8">
+                    <div class="space-y-3 mb-6 md:mb-8">
                         <div
                             class="bg-indigo-50 border-l-4 border-indigo-500 p-4 rounded-r-xl flex items-center gap-4 animate-fade-in">
                             <div class="bg-indigo-500 p-1.5 rounded-full text-white">
@@ -2661,36 +2666,36 @@
                     </div>
 
                     <!-- Next Trip Hero -->
-                    <div class="glass-gradient rounded-2xl p-6 text-white mb-8 shadow-xl relative overflow-hidden">
+                    <div class="glass-gradient rounded-2xl p-4 md:p-6 text-white mb-6 md:mb-8 shadow-xl relative overflow-hidden">
                         <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/5 rounded-full blur-3xl"></div>
                         <div class="absolute right-20 bottom-0 w-32 h-32 bg-orange-500/10 rounded-full blur-2xl"></div>
-                        <div class="flex justify-between items-center relative z-10">
+                        <div class="flex flex-col md:flex-row md:justify-between md:items-center gap-4 relative z-10">
                             <div>
-                                <div class="flex items-center gap-2 mb-4">
+                                <div class="flex flex-wrap items-center gap-2 mb-4">
                                     <span
                                         class="bg-[#4285F4] text-white text-[10px] font-black px-2 py-0.5 rounded tracking-widest">Next
                                         Trip</span>
                                     <span class="text-xs text-slate-300 font-medium">Confirmed • 5 Days Until
                                         Departure</span>
                                 </div>
-                                <h3 class="text-2xl font-bold mb-1">Tokyo (HND) <i data-lucide="move-right"
+                                <h3 class="text-xl md:text-2xl font-bold mb-1 leading-tight">Tokyo (HND) <i data-lucide="move-right"
                                         class="inline w-6 h-6 mx-2 text-orange-400"></i> Hiroshima (HIJ)</h3>
                             </div>
                             <button
-                                class="bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-2.5 rounded-lg text-sm font-bold backdrop-blur-md transition-all">
+                                class="w-full md:w-auto min-h-[44px] bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-2.5 rounded-lg text-sm font-bold backdrop-blur-md transition-all">
                                 View Itinerary
                             </button>
                         </div>
                     </div>
 
-                    <div class="space-y-8">
-                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:grid-rows-[auto_auto]">
+                    <div class="space-y-6 md:space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 md:grid-rows-[auto_auto]">
                             <!-- Left: Your Reservation + Approver Menu (2 rows) -->
-                            <div class="lg:col-span-2 lg:row-span-2 space-y-8">
+                            <div class="md:col-span-2 md:row-span-2 space-y-6 md:space-y-8">
                                 <!-- Your Reservation -->
                                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
                                     <div
-                                        class="px-6 py-4 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
+                                        class="px-4 md:px-6 py-4 bg-slate-50 border-b border-slate-100 flex justify-between items-center">
                                         <h4
                                             class="text-xs font-black text-slate-500 tracking-widest flex items-center gap-2">
                                             <i data-lucide="bar-chart-2" class="w-4 h-4 text-[#4285F4]"></i> Your
@@ -2702,8 +2707,8 @@
                                             <i data-lucide="rotate-cw" class="w-4 h-4"></i>
                                         </button>
                                     </div>
-                                    <div class="p-6">
-                                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 text-center">
+                                    <div class="p-4 md:p-6">
+                                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                                             <div class="stat-card bg-slate-50 p-4 rounded-xl border border-slate-100">
                                                 <span
                                                     class="text-[10px] font-bold text-slate-400 tracking-tighter mb-1 block">Reservation
@@ -2728,13 +2733,13 @@
 
                                 <!-- Approver Menu -->
                                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                                    <div class="px-6 py-4 bg-slate-50 border-b border-slate-100">
+                                    <div class="px-4 md:px-6 py-4 bg-slate-50 border-b border-slate-100">
                                         <h4
                                             class="text-xs font-black text-slate-500 tracking-widest flex items-center gap-2">
                                             <i data-lucide="user-check" class="w-4 h-4 text-blue-500"></i> Approver Menu
                                         </h4>
                                     </div>
-                                    <div class="p-6">
+                                    <div class="p-4 md:p-6">
                                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
                                             <div role="button" tabindex="0"
                                                 class="stat-card bg-slate-50 p-4 rounded-xl border border-slate-100 cursor-pointer hover:border-[#4285F4]/40 hover:shadow-md transition-all text-left md:text-center"
@@ -2769,15 +2774,15 @@
                             </div>
 
                             <!-- News from your company (height up to bottom of Approver Menu) -->
-                            <div class="lg:row-span-2 lg:min-h-0">
-                                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden h-full min-h-[280px] lg:min-h-0 flex flex-col">
-                                    <div class="px-6 py-4 bg-slate-50 border-b border-slate-100">
+                            <div class="md:row-span-2 md:min-h-0">
+                                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden h-full min-h-[280px] md:min-h-0 flex flex-col">
+                                    <div class="px-4 md:px-6 py-4 bg-slate-50 border-b border-slate-100">
                                         <h4
                                             class="text-xs font-black text-slate-500 tracking-widest flex items-center gap-2">
                                             <i data-lucide="building-2" class="w-4 h-4 text-[#4285F4]"></i> News from your company
                                         </h4>
                                     </div>
-                                    <div class="p-6 flex-1 flex flex-col items-center justify-center min-h-[200px] text-center">
+                                    <div class="p-4 md:p-6 flex-1 flex flex-col items-center justify-center min-h-[200px] text-center">
                                         <div
                                             class="w-12 h-12 bg-slate-50 rounded-full flex items-center justify-center text-slate-300 mb-4">
                                             <i data-lucide="inbox" class="w-6 h-6"></i>
@@ -2791,14 +2796,14 @@
                         <!-- News from BCD (full width) -->
                         <div class="w-full">
                             <div class="bg-white rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
-                                <div class="px-6 py-4 bg-slate-50 border-b border-slate-100">
+                                <div class="px-4 md:px-6 py-4 bg-slate-50 border-b border-slate-100">
                                     <h4
                                         class="text-xs font-black text-slate-500 tracking-widest flex items-center gap-2">
                                         <i data-lucide="info" class="w-4 h-4 text-blue-500"></i> News from BCD
                                     </h4>
                                 </div>
-                                <div class="p-6 flex flex-col gap-4">
-                                    <button type="button" class="bcd-news-card group w-full bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-orange-500/40 transition-all duration-200 text-left flex flex-row items-center gap-5 px-5 py-4"
+                                <div class="p-4 md:p-6 flex flex-col gap-4">
+                                    <button type="button" class="bcd-news-card group w-full min-h-[44px] bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-orange-500/40 transition-all duration-200 text-left flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-5 px-4 md:px-5 py-4"
                                         data-date="2025/10/02"
                                         data-writer="BCD"
                                         data-post-period="2025/10/02–2025/10/31"
@@ -2811,7 +2816,7 @@
                                         <p class="text-sm font-semibold text-slate-800 line-clamp-2 flex-1 min-w-0">Tripsource Regular System Maintenance Notice...</p>
                                         <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 shrink-0 group-hover:text-[#4285F4] group-hover:translate-x-0.5 transition-all"></i>
                                     </button>
-                                    <button type="button" class="bcd-news-card group w-full bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-orange-500/40 transition-all duration-200 text-left flex flex-row items-center gap-5 px-5 py-4"
+                                    <button type="button" class="bcd-news-card group w-full min-h-[44px] bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-orange-500/40 transition-all duration-200 text-left flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-5 px-4 md:px-5 py-4"
                                         data-date="2025/09/28"
                                         data-writer="BCD"
                                         data-post-period="2025/09/28–2025/12/31"
@@ -2824,7 +2829,7 @@
                                         <p class="text-sm font-semibold text-slate-800 line-clamp-2 flex-1 min-w-0">New Travel Policy Update (Q4 2025)...</p>
                                         <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 shrink-0 group-hover:text-[#4285F4] group-hover:translate-x-0.5 transition-all"></i>
                                     </button>
-                                    <button type="button" class="bcd-news-card group w-full bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-orange-500/40 transition-all duration-200 text-left flex flex-row items-center gap-5 px-5 py-4"
+                                    <button type="button" class="bcd-news-card group w-full min-h-[44px] bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-orange-500/40 transition-all duration-200 text-left flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-5 px-4 md:px-5 py-4"
                                         data-date="2025/09/15"
                                         data-writer="BCD"
                                         data-post-period="2025/09/15–2025/09/30"
@@ -2837,7 +2842,7 @@
                                         <p class="text-sm font-semibold text-slate-800 line-clamp-2 flex-1 min-w-0">BCD Travel Portal Upgrade...</p>
                                         <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400 shrink-0 group-hover:text-[#4285F4] group-hover:translate-x-0.5 transition-all"></i>
                                     </button>
-                                    <button type="button" class="bcd-news-card group w-full bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-orange-500/40 transition-all duration-200 text-left flex flex-row items-center gap-5 px-5 py-4"
+                                    <button type="button" class="bcd-news-card group w-full min-h-[44px] bg-white border border-slate-200 rounded-xl shadow-sm hover:shadow-md hover:border-orange-500/40 transition-all duration-200 text-left flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-5 px-4 md:px-5 py-4"
                                         data-date="2025/09/01"
                                         data-writer="BCD"
                                         data-post-period="2025/09/01–2026/01/05"
@@ -2857,7 +2862,7 @@
                 </main>
 
                 <!-- AI-ADDED: Travel Application — Approvals (filters + Pending/Approved); Prompt: home-area approvals list -->
-                <main id="page-approvals" class="hidden animate-fade-in p-8 w-full max-w-[1600px] mx-auto">
+                <main id="page-approvals" class="hidden animate-fade-in p-4 md:p-8 w-full max-w-[1600px] mx-auto">
                     <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                         <div>
                             <h2 class="text-2xl font-black text-slate-900 tracking-tight">Approvals</h2>
@@ -3719,7 +3724,7 @@
                 </main>
 
                 <!-- BOOKING WORKFLOW -->
-                <main id="page-booking" class="booking-workflow-page p-4 sm:p-8 hidden bg-slate-50 min-h-screen w-full max-w-full">
+                <main id="page-booking" class="booking-workflow-page p-4 md:p-8 hidden bg-slate-50 min-h-screen w-full max-w-full">
                     <div class="w-full max-w-full">
                         <div class="mb-8 flex justify-between items-center">
                             <h2 id="booking-title" class="app-heading-page">Travel:
@@ -5107,7 +5112,7 @@
             </main>
 
             <!-- CHANGE REQUEST WORKFLOW (separate from New Request; same form structure, heading "Change Request") -->
-            <main id="page-change-request" class="booking-workflow-page p-4 sm:p-8 hidden bg-slate-50 min-h-screen w-full max-w-full">
+            <main id="page-change-request" class="booking-workflow-page p-4 md:p-8 hidden bg-slate-50 min-h-screen w-full max-w-full">
                 <div class="w-full max-w-full">
                     <div class="mb-8 flex justify-between items-center">
                         <h2 id="change-request-title" class="app-heading-page">Travel:
@@ -5329,7 +5334,7 @@
             </main>
 
             <!-- RESERVATION LIST -->
-            <main id="page-reservation-list" class="p-8 hidden animate-fade-in w-full max-w-[1600px] mx-auto">
+            <main id="page-reservation-list" class="p-4 md:p-8 hidden animate-fade-in w-full max-w-[1600px] mx-auto">
                 <div class="flex flex-wrap items-center justify-between gap-4 mb-6">
                     <div>
                         <h2 class="text-2xl font-black text-slate-900 tracking-tight">Reservation List</h2>
@@ -8874,7 +8879,7 @@
             const sb = document.getElementById('app-sidebar');
             const main = document.getElementById('main-content-wrapper');
             if (!sb || !main) return;
-            if (window.matchMedia('(max-width: 1023px)').matches) {
+            if (window.matchMedia('(max-width: 767px)').matches) {
                 window.setMobileNavOpen(false);
                 sb.classList.remove('sidebar-collapsed', 'w-16');
                 sb.classList.add('w-64');
@@ -8886,7 +8891,7 @@
         window.toggleSidebar = () => {
             const sb = document.getElementById('app-sidebar');
             if (!sb) return;
-            if (window.matchMedia('(max-width: 1023px)').matches) {
+            if (window.matchMedia('(max-width: 767px)').matches) {
                 window.setMobileNavOpen(!document.body.classList.contains('mobile-nav-open'));
                 return;
             }
@@ -8900,7 +8905,7 @@
             window.addEventListener('resize', () => {
                 clearTimeout(_obtResizeT);
                 _obtResizeT = setTimeout(() => {
-                    const mobile = window.matchMedia('(max-width: 1023px)').matches;
+                    const mobile = window.matchMedia('(max-width: 767px)').matches;
                     if (!mobile) {
                         window.setMobileNavOpen(false);
                         window._applyDesktopSidebarCollapsed(!!window._sidebarCollapsedPref);
@@ -9279,7 +9284,7 @@
             if (target) {
                 requestAnimationFrame(() => window.normalizeAppDatesInSubtree?.(target));
             }
-            if (window.matchMedia('(max-width: 1023px)').matches) {
+            if (window.matchMedia('(max-width: 767px)').matches) {
                 window.setMobileNavOpen(false);
             }
         };
