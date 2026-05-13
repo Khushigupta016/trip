@@ -161,6 +161,16 @@
             display: none !important;
         }
 
+        @media (min-width: 768px) {
+            .hidden.md\:block {
+                display: block !important;
+            }
+
+            .hidden.md\:flex {
+                display: flex !important;
+            }
+        }
+
         #page-profile {
             font-family: var(--font-body);
             color: var(--text-primary);
@@ -251,8 +261,7 @@
 
         @media (min-width: 768px) {
             .app-fluid-button {
-                width: clamp(120px, 20vw, 300px);
-                min-width: 200px;
+                width: clamp(7.5rem, 20vw, 18.75rem);
             }
         }
 
@@ -599,7 +608,7 @@
             display: flex;
             flex-direction: column;
             flex: 1;
-            min-width: 200px;
+            min-width: min(12rem, 100%);
         }
 
         .form-group label {
@@ -924,6 +933,9 @@
             overflow: hidden;
         }
         .online-flight-searchbar-seg {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             flex: 1 1 0;
             min-width: 0;
             padding: 10px 14px;
@@ -1745,6 +1757,87 @@
                 width: auto;
                 flex: 1 1 0%;
                 min-width: 0;
+            }
+
+            #online-flight-searchbar.online-flight-searchbar,
+            #online-rail-searchbar.online-flight-searchbar {
+                position: relative;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                align-items: stretch;
+                flex-wrap: nowrap;
+            }
+
+            #online-flight-searchbar.online-flight-searchbar .online-flight-searchbar-seg,
+            #online-rail-searchbar.online-flight-searchbar .online-flight-searchbar-seg {
+                min-width: 0;
+                padding: 10px;
+                border-right: none;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            #online-flight-searchbar .online-flight-searchbar-seg--from,
+            #online-rail-searchbar .online-flight-searchbar-seg--from {
+                grid-column: 1;
+                grid-row: 1;
+                border-right: 1px solid #e2e8f0;
+            }
+
+            #online-flight-searchbar .online-flight-searchbar-seg--to,
+            #online-rail-searchbar .online-flight-searchbar-seg--to {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            #online-flight-searchbar .online-flight-searchbar-seg--depart,
+            #online-rail-searchbar .online-flight-searchbar-seg--depart {
+                grid-column: 1;
+                grid-row: 2;
+                border-right: 1px solid #e2e8f0;
+            }
+
+            #online-flight-searchbar .online-flight-searchbar-seg--return,
+            #online-rail-searchbar .online-flight-searchbar-seg--return {
+                grid-column: 2;
+                grid-row: 2;
+            }
+
+            #online-flight-searchbar .online-flight-searchbar-seg--class {
+                grid-column: 1 / -1;
+            }
+
+            #online-flight-searchbar .online-flight-searchbar-seg--depart.online-flight-searchbar-seg--last,
+            #online-rail-searchbar .online-flight-searchbar-seg--depart.online-flight-searchbar-seg--last {
+                grid-column: 1 / -1;
+                border-right: none;
+            }
+
+            #online-flight-searchbar .online-flight-searchbar-seg--class,
+            #online-rail-searchbar .online-flight-searchbar-seg--depart,
+            #online-rail-searchbar .online-flight-searchbar-seg--return.online-flight-searchbar-seg--last {
+                border-bottom: none;
+            }
+
+            #online-flight-searchbar.online-flight-searchbar .online-flight-searchbar-swap,
+            #online-rail-searchbar.online-flight-searchbar .online-flight-searchbar-swap {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                z-index: 2;
+                width: 2rem;
+                min-width: 2rem;
+                height: 2rem;
+                min-height: 2rem;
+                padding: 0;
+                border: 1px solid #e2e8f0;
+                border-radius: 9999px;
+                box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
+                transform: translate(-50%, -50%);
+            }
+
+            #online-flight-searchbar.online-flight-searchbar .online-flight-searchbar-swap:hover,
+            #online-rail-searchbar.online-flight-searchbar .online-flight-searchbar-swap:hover {
+                transform: translate(-50%, -50%);
             }
         }
 
@@ -2573,77 +2666,101 @@
         <!-- MAIN CONTENT WRAPPER -->
         <div id="main-content-wrapper" class="ml-64 flex flex-col min-h-screen transition-all duration-300 ease-in-out">
             <header
-                class="min-h-16 bg-white border-b border-slate-200 flex flex-col gap-2 py-2 md:flex-row md:items-center md:justify-between md:gap-3 md:py-0 md:h-16 px-4 md:px-10 xl:px-8 sticky top-0 z-30 shadow-sm">
-                <div class="flex items-center gap-2 min-w-0 w-full md:flex-1">
-                    <button type="button" id="mobile-nav-toggle" onclick="window.toggleSidebar()"
-                        class="md:hidden inline-flex items-center justify-center min-w-[44px] min-h-[44px] -ml-1 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors shrink-0"
-                        aria-controls="app-sidebar" aria-expanded="false" aria-label="Open menu" title="Menu">
-                        <i data-lucide="menu" class="w-6 h-6 shrink-0" aria-hidden="true"></i>
-                    </button>
-                <div class="relative w-full max-w-sm group min-w-0 flex-1">
-                    <span
-                        class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-[#4285F4] transition-colors z-10">
-                        <i data-lucide="search" class="w-4 h-4"></i>
-                    </span>
-                    <input type="text" id="global-search"
-                        onkeydown="if(event.key === 'Enter') window.handleSearch(this.value)"
-                        placeholder="Search by Trip ID or PNR..."
-                        class="relative z-0 block w-full pl-10 pr-3 py-2 border border-slate-200 rounded-lg leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-1 focus:ring-[#4285F4] focus:border-[#4285F4] text-xs transition-all">
-                </div>
-                </div>
-
-                <div class="flex items-center gap-2 md:gap-4 shrink-0 w-full md:w-auto justify-between md:justify-end flex-wrap md:flex-nowrap">
-                    <button type="button" onclick="window.openContactServiceModal()"
-                        class="flex items-center gap-2 text-[#0A3266] hover:text-[#4285F4] text-xs sm:text-sm font-bold transition-colors shrink-0 whitespace-nowrap leading-tight text-left">
-                        <i data-lucide="headset" class="w-4 h-4 shrink-0"></i>
-                        <span>Contact Service Team</span>
-                    </button>
-                    <!-- AI-ADDED: Ask Us chatbot trigger
-                         Prompt: Add Ask Us in header, popup Travel assistant chatbot -->
-                    <button type="button" onclick="window.toggleAskUsChat()"
-                        class="flex items-center gap-2 text-[#0A3266] hover:text-[#4285F4] text-xs sm:text-sm font-bold transition-colors shrink-0">
-                        <i data-lucide="message-circle" class="w-4 h-4 shrink-0"></i>
-                        <span>Ask Us</span>
-                    </button>
-
-                    <!-- NOTIFICATION ICON -->
-                    <button type="button" class="relative p-2 text-slate-400 hover:text-[#4285F4] transition-all group">
-                        <i data-lucide="bell" class="w-5 h-5"></i>
-                        <span
-                            class="badge-count-tiny absolute top-1 right-1 w-4 h-4 bg-red-500 text-white font-black rounded-full flex items-center justify-center border-2 border-white shadow-sm group-hover:scale-110 transition-transform">2</span>
-                    </button>
-
-                    <div class="relative group">
-                        <button onclick="window.toggleLangDropdown()"
-                            class="flex items-center gap-1 text-slate-500 hover:text-slate-800 font-bold text-[10px] tracking-wider transition-colors">
-                            <i data-lucide="globe" class="w-3 h-3"></i>
-                            English <i data-lucide="chevron-down" class="w-2.5 h-2.5"></i>
+                class="min-h-16 bg-white border-b border-slate-200 py-2 md:py-0 md:h-16 px-4 md:px-10 xl:px-8 sticky top-0 z-30 shadow-sm">
+                <div class="block md:hidden w-full">
+                    <div class="flex items-center justify-between gap-3 w-full">
+                        <button type="button" id="mobile-nav-toggle" onclick="window.toggleSidebar()"
+                            class="flex items-center gap-2 min-w-0 min-h-[44px] rounded-xl text-left text-slate-900 hover:bg-slate-100 transition-colors"
+                            aria-controls="app-sidebar" aria-expanded="false" aria-label="Open menu" title="Menu">
+                            <div
+                                class="w-9 h-9 rounded-full bg-[#4285F4] text-white flex items-center justify-center font-bold text-[11px] shrink-0">
+                                JW</div>
+                            <span class="text-sm font-bold leading-tight truncate">John Wick</span>
                         </button>
-                        <div id="lang-dropdown"
-                            class="hidden absolute top-full right-0 mt-2 w-32 bg-white rounded-lg shadow-xl border border-slate-200 overflow-hidden text-slate-800 z-50">
-                            <button onclick="window.toggleLangDropdown()"
-                                class="w-full text-left px-3 py-2 text-[10px] font-bold hover:bg-blue-50 hover:text-blue-600 transition-colors">English</button>
-                            <button onclick="window.toggleLangDropdown()"
-                                class="w-full text-left px-3 py-2 text-[10px] font-bold hover:bg-blue-50 hover:text-blue-600 transition-colors">日本語</button>
+
+                        <div class="flex flex-col items-end gap-1 shrink-0">
+                            <!-- AI-ADDED: Ask Us chatbot trigger
+                                 Prompt: Add Ask Us in header, popup Travel assistant chatbot -->
+                            <button type="button" onclick="window.toggleAskUsChat()"
+                                class="inline-flex items-center justify-end gap-1.5 text-[#0A3266] hover:text-[#4285F4] text-xs font-bold leading-tight transition-colors">
+                                <i data-lucide="message-circle" class="w-4 h-4 shrink-0"></i>
+                                <span>Ask Us</span>
+                            </button>
+                            <button type="button" onclick="window.openContactServiceModal()"
+                                class="inline-flex items-center justify-end gap-1.5 text-[#0A3266] hover:text-[#4285F4] text-xs font-bold leading-tight transition-colors whitespace-nowrap">
+                                <i data-lucide="headset" class="w-4 h-4 shrink-0"></i>
+                                <span>Contact Service Team</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="hidden md:flex md:items-center md:justify-between md:gap-3 w-full h-full">
+                    <div class="flex items-center gap-2 min-w-0 md:flex-1">
+                        <div class="relative w-full max-w-sm group min-w-0 flex-1">
+                            <span
+                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400 group-focus-within:text-[#4285F4] transition-colors z-10">
+                                <i data-lucide="search" class="w-4 h-4"></i>
+                            </span>
+                            <input type="text" id="global-search"
+                                onkeydown="if(event.key === 'Enter') window.handleSearch(this.value)"
+                                placeholder="Search by Trip ID or PNR..."
+                                class="relative z-0 block w-full pl-10 pr-3 py-2 border border-slate-200 rounded-lg leading-5 bg-slate-50 placeholder-slate-400 focus:outline-none focus:bg-white focus:ring-1 focus:ring-[#4285F4] focus:border-[#4285F4] text-xs transition-all">
                         </div>
                     </div>
 
-                    <div class="h-6 w-px bg-slate-200"></div>
+                    <div class="flex items-center gap-4 shrink-0 justify-end flex-nowrap">
+                        <button type="button" onclick="window.openContactServiceModal()"
+                            class="flex items-center gap-2 text-[#0A3266] hover:text-[#4285F4] text-sm font-bold transition-colors shrink-0 whitespace-nowrap leading-tight text-left">
+                            <i data-lucide="headset" class="w-4 h-4 shrink-0"></i>
+                            <span>Contact Service Team</span>
+                        </button>
+                        <!-- AI-ADDED: Ask Us chatbot trigger
+                             Prompt: Add Ask Us in header, popup Travel assistant chatbot -->
+                        <button type="button" onclick="window.toggleAskUsChat()"
+                            class="flex items-center gap-2 text-[#0A3266] hover:text-[#4285F4] text-sm font-bold transition-colors shrink-0">
+                            <i data-lucide="message-circle" class="w-4 h-4 shrink-0"></i>
+                            <span>Ask Us</span>
+                        </button>
 
-                    <div class="relative">
-                        <div class="flex items-center gap-3">
-                            <div class="text-right">
-                                <p class="text-sm font-bold text-slate-900 leading-tight">JOHN WICK</p>
-                                <p class="text-[10px] text-slate-500 font-medium tracking-tight">LCN: 2210</p>
-                            </div>
-                            <button type="button" onclick="window.toggleProfileDropdown()"
-                                class="flex items-center gap-1.5 p-1 pr-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200">
-                                <div
-                                    class="w-8 h-8 rounded-full bg-[#4285F4] text-white flex items-center justify-center font-bold text-[10px]">
-                                    JW</div>
-                                <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400"></i>
+                        <!-- NOTIFICATION ICON -->
+                        <button type="button" class="relative p-2 text-slate-400 hover:text-[#4285F4] transition-all group">
+                            <i data-lucide="bell" class="w-5 h-5"></i>
+                            <span
+                                class="badge-count-tiny absolute top-1 right-1 w-4 h-4 bg-red-500 text-white font-black rounded-full flex items-center justify-center border-2 border-white shadow-sm group-hover:scale-110 transition-transform">2</span>
+                        </button>
+
+                        <div class="relative group">
+                            <button onclick="window.toggleLangDropdown()"
+                                class="flex items-center gap-1 text-slate-500 hover:text-slate-800 font-bold text-[10px] tracking-wider transition-colors">
+                                <i data-lucide="globe" class="w-3 h-3"></i>
+                                English <i data-lucide="chevron-down" class="w-2.5 h-2.5"></i>
                             </button>
+                            <div id="lang-dropdown"
+                                class="hidden absolute top-full right-0 mt-2 w-32 bg-white rounded-lg shadow-xl border border-slate-200 overflow-hidden text-slate-800 z-50">
+                                <button onclick="window.toggleLangDropdown()"
+                                    class="w-full text-left px-3 py-2 text-[10px] font-bold hover:bg-blue-50 hover:text-blue-600 transition-colors">English</button>
+                                <button onclick="window.toggleLangDropdown()"
+                                    class="w-full text-left px-3 py-2 text-[10px] font-bold hover:bg-blue-50 hover:text-blue-600 transition-colors">日本語</button>
+                            </div>
                         </div>
+
+                        <div class="h-6 w-px bg-slate-200"></div>
+
+                        <div class="relative">
+                            <div class="flex items-center gap-3">
+                                <div class="text-right">
+                                    <p class="text-sm font-bold text-slate-900 leading-tight">JOHN WICK</p>
+                                    <p class="text-[10px] text-slate-500 font-medium tracking-tight">LCN: 2210</p>
+                                </div>
+                                <button type="button" onclick="window.toggleProfileDropdown()"
+                                    class="flex items-center gap-1.5 p-1 pr-2 rounded-full bg-slate-100 hover:bg-slate-200 transition-all border border-slate-200">
+                                    <div
+                                        class="w-8 h-8 rounded-full bg-[#4285F4] text-white flex items-center justify-center font-bold text-[10px]">
+                                        JW</div>
+                                    <i data-lucide="chevron-down" class="w-3 h-3 text-slate-400"></i>
+                                </button>
+                            </div>
 
                         <div id="profile-dropdown"
                             class="hidden absolute top-full right-0 mt-2 w-64 bg-white rounded-xl shadow-2xl border border-slate-200 overflow-hidden text-slate-800 z-50">
@@ -2717,9 +2834,13 @@
                                 </div>
                                 <h3 class="text-xl md:text-2xl font-bold mb-1 leading-tight">Tokyo (HND) <i data-lucide="move-right"
                                         class="inline w-6 h-6 mx-2 text-orange-400"></i> Hiroshima (HIJ)</h3>
+                                <button
+                                    class="block md:hidden mt-4 w-full min-h-[44px] bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-2.5 rounded-lg text-sm font-bold backdrop-blur-md transition-all">
+                                    View Itinerary
+                                </button>
                             </div>
                             <button
-                                class="app-fluid-button mt-auto w-full md:mt-0 min-h-[44px] bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-2.5 rounded-lg text-sm font-bold backdrop-blur-md transition-all">
+                                class="hidden md:block app-fluid-button md:mt-0 min-h-[44px] bg-white/10 hover:bg-white/20 border border-white/20 px-6 py-2.5 rounded-lg text-sm font-bold backdrop-blur-md transition-all">
                                 View Itinerary
                             </button>
                         </div>
@@ -4164,7 +4285,7 @@
                                                 <div class="border-t border-slate-100 pt-4 space-y-4">
                                                     <div id="online-flight-searchbar-single-wrap">
                                                         <div id="online-flight-searchbar" class="online-flight-searchbar" role="group" aria-label="Flight search criteria">
-                                                            <div class="online-flight-searchbar-seg">
+                                                            <div class="online-flight-searchbar-seg online-flight-searchbar-seg--from">
                                                                 <div class="online-flight-searchbar-label">From</div>
                                                                 <div class="flex items-center gap-2 min-w-0">
                                                                     <i data-lucide="map-pin" class="w-4 h-4 text-slate-400 shrink-0"></i>
@@ -4179,7 +4300,7 @@
                                                                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
                                                                 </span>
                                                             </button>
-                                                            <div class="online-flight-searchbar-seg">
+                                                            <div class="online-flight-searchbar-seg online-flight-searchbar-seg--to">
                                                                 <div class="online-flight-searchbar-label">To</div>
                                                                 <div class="flex items-center gap-2 min-w-0">
                                                                     <i data-lucide="map-pin" class="w-4 h-4 text-slate-400 shrink-0"></i>
@@ -4187,7 +4308,7 @@
                                                                         placeholder="Destination" value="Shanghai (PVG)" autocomplete="off">
                                                                 </div>
                                                             </div>
-                                                            <div id="online-flight-depart-segment" class="online-flight-searchbar-seg">
+                                                            <div id="online-flight-depart-segment" class="online-flight-searchbar-seg online-flight-searchbar-seg--depart">
                                                                 <div class="online-flight-searchbar-label">Departure date</div>
                                                                 <div class="material-date-field w-full">
                                                                     <input type="date" id="online-flight-depart-date" class="material-date-input"
@@ -4195,7 +4316,7 @@
                                                                     <i data-lucide="calendar" class="material-date-icon w-4 h-4"></i>
                                                                 </div>
                                                             </div>
-                                                            <div id="online-flight-return-segment" class="online-flight-searchbar-seg">
+                                                            <div id="online-flight-return-segment" class="online-flight-searchbar-seg online-flight-searchbar-seg--return">
                                                                 <div class="online-flight-searchbar-label" id="online-flight-return-bar-label">Return date</div>
                                                                 <div class="material-date-field w-full">
                                                                     <input type="date" id="online-flight-return-date" class="material-date-input"
@@ -4205,7 +4326,7 @@
                                                             </div>
                                                             <!-- AI-ADDED: Class dropdown in the primary search bar
                                                                  Prompt: Add Class input to #online-flight-searchbar -->
-                                                            <div class="online-flight-searchbar-seg online-flight-searchbar-seg--last">
+                                                            <div class="online-flight-searchbar-seg online-flight-searchbar-seg--class online-flight-searchbar-seg--last">
                                                                 <div class="online-flight-searchbar-label">Class</div>
                                                                 <div class="flex items-center gap-2 min-w-0">
                                                                     <i data-lucide="armchair" class="w-4 h-4 text-slate-400 shrink-0"></i>
@@ -4233,7 +4354,7 @@
                                                 </div>
                                                 <div class="flex justify-center pt-1">
                                                     <button type="button" onclick="window.searchOnlineFlight()"
-                                                        class="bg-[#4285F4] text-white px-10 py-2.5 rounded-xl font-bold text-sm hover:bg-[#3367D6] transition-all shadow-sm">
+                                                        class="w-full sm:w-auto bg-[#4285F4] text-white px-10 py-2.5 rounded-xl font-bold text-sm hover:bg-[#3367D6] transition-all shadow-sm">
                                                         Search
                                                     </button>
                                                 </div>
@@ -4369,7 +4490,7 @@
                                                 <div class="border-t border-slate-100 pt-4 space-y-4">
                                                     <div id="online-rail-searchbar-single-wrap">
                                                         <div id="online-rail-searchbar" class="online-flight-searchbar" role="group" aria-label="Rail search criteria">
-                                                            <div class="online-flight-searchbar-seg">
+                                                            <div class="online-flight-searchbar-seg online-flight-searchbar-seg--from">
                                                                 <div class="online-flight-searchbar-label">From</div>
                                                                 <div class="flex items-center gap-2 min-w-0">
                                                                     <i data-lucide="map-pin" class="w-4 h-4 text-slate-400 shrink-0"></i>
@@ -4384,7 +4505,7 @@
                                                                     <i data-lucide="chevron-right" class="w-4 h-4"></i>
                                                                 </span>
                                                             </button>
-                                                            <div class="online-flight-searchbar-seg">
+                                                            <div class="online-flight-searchbar-seg online-flight-searchbar-seg--to">
                                                                 <div class="online-flight-searchbar-label">To</div>
                                                                 <div class="flex items-center gap-2 min-w-0">
                                                                     <i data-lucide="map-pin" class="w-4 h-4 text-slate-400 shrink-0"></i>
@@ -4392,7 +4513,7 @@
                                                                         placeholder="Destination station" value="Shin-Osaka" autocomplete="off">
                                                                 </div>
                                                             </div>
-                                                            <div id="online-rail-depart-segment" class="online-flight-searchbar-seg">
+                                                            <div id="online-rail-depart-segment" class="online-flight-searchbar-seg online-flight-searchbar-seg--depart">
                                                                 <div class="online-flight-searchbar-label">Travel date</div>
                                                                 <div class="material-date-field w-full">
                                                                     <input type="date" id="online-rail-depart-date" class="material-date-input"
@@ -4400,7 +4521,7 @@
                                                                     <i data-lucide="calendar" class="material-date-icon w-4 h-4"></i>
                                                                 </div>
                                                             </div>
-                                                            <div id="online-rail-return-segment" class="online-flight-searchbar-seg online-flight-searchbar-seg--last">
+                                                            <div id="online-rail-return-segment" class="online-flight-searchbar-seg online-flight-searchbar-seg--return online-flight-searchbar-seg--last">
                                                                 <div class="online-flight-searchbar-label" id="online-rail-return-bar-label">Return date</div>
                                                                 <div class="material-date-field w-full">
                                                                     <input type="date" id="online-rail-return-date" class="material-date-input"
@@ -4424,7 +4545,7 @@
                                                 </div>
                                                 <div class="flex justify-center pt-1">
                                                     <button type="button" onclick="window.searchOnlineRail()"
-                                                        class="bg-[#4285F4] text-white px-10 py-2.5 rounded-xl font-bold text-sm hover:bg-[#3367D6] transition-all shadow-sm">
+                                                        class="w-full sm:w-auto bg-[#4285F4] text-white px-10 py-2.5 rounded-xl font-bold text-sm hover:bg-[#3367D6] transition-all shadow-sm">
                                                         Search
                                                     </button>
                                                 </div>
@@ -4556,7 +4677,7 @@
                                                 </div>
                                                 <div class="flex justify-center pt-1">
                                                     <button type="button" onclick="window.searchOnlineHotel()"
-                                                        class="bg-[#4285F4] text-white px-10 py-2.5 rounded-xl font-bold text-sm hover:bg-[#3367D6] transition-all shadow-sm">
+                                                        class="w-full sm:w-auto bg-[#4285F4] text-white px-10 py-2.5 rounded-xl font-bold text-sm hover:bg-[#3367D6] transition-all shadow-sm">
                                                         Search
                                                     </button>
                                                 </div>
@@ -4716,7 +4837,7 @@
                                                 </div>
                                                 <div class="flex justify-center pt-1">
                                                     <button type="button" onclick="window.searchOnlineCar()"
-                                                        class="bg-[#4285F4] text-white px-10 py-2.5 rounded-xl font-bold text-sm hover:bg-[#3367D6] transition-all shadow-sm">
+                                                        class="w-full sm:w-auto bg-[#4285F4] text-white px-10 py-2.5 rounded-xl font-bold text-sm hover:bg-[#3367D6] transition-all shadow-sm">
                                                         Search
                                                     </button>
                                                 </div>
@@ -7182,18 +7303,18 @@
     <!-- MODAL -->
     <div id="travel-modal"
         class="hidden fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/60 backdrop-blur-sm p-4">
-        <div class="bg-white rounded-3xl w-[min(100%,94vw)] sm:w-full max-w-2xl max-h-[90vh] overflow-hidden shadow-2xl modal-enter flex flex-col mx-auto">
+        <div class="bg-white rounded-3xl w-[90%] md:w-full max-w-2xl max-h-[85vh] md:max-h-[90vh] overflow-hidden shadow-2xl modal-enter flex flex-col mx-auto">
             <div class="p-4 md:p-10 xl:p-8 border-b flex justify-between items-center shrink-0">
                 <h3 class="text-xl font-black">New Request</h3><button onclick="window.toggleTravelModal()"><i
                         data-lucide="x" class="w-6 h-6 text-slate-400"></i></button>
             </div>
             <div class="p-4 md:p-10 xl:p-8 grid grid-cols-1 md:grid-cols-2 gap-6 flex-1 min-h-0 overflow-y-auto">
                 <button onclick="window.startBooking('domestic'); window.toggleTravelModal();"
-                    class="p-4 md:p-10 xl:p-8 border-2 rounded-2xl hover:border-[#E53935] transition-all"><i data-lucide="map"
+                    class="w-full p-4 md:p-10 xl:p-8 border-2 rounded-2xl hover:border-[#E53935] transition-all"><i data-lucide="map"
                         class="w-8 h-8 mb-4 mx-auto text-slate-400"></i><span
                         class="font-black">Domestic</span></button>
                 <button onclick="window.startBooking('international'); window.toggleTravelModal();"
-                    class="p-4 md:p-10 xl:p-8 border-2 rounded-2xl hover:border-[#E53935] transition-all"><i data-lucide="globe"
+                    class="w-full p-4 md:p-10 xl:p-8 border-2 rounded-2xl hover:border-[#E53935] transition-all"><i data-lucide="globe"
                         class="w-8 h-8 mb-4 mx-auto text-slate-400"></i><span
                         class="font-black">International</span></button>
             </div>
